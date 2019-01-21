@@ -26,6 +26,7 @@
 # 默认代理
 
 [bypass_list]
+ip.cn
 yaohuo.me/*
 3g.music.qq.com
 a.play.api.3g.youku.com
