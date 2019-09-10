@@ -47,6 +47,7 @@ then
 		rclone copy /back/backup.tgz gdrive3:/gcpbackup/ -P
 		echo $(date) "上传到云盘一次" >> /root/backuplog.txt
 		echo -e "\033[32m上传云盘成功!\033[0m"
+		fi
 	elif	[ "$m2" == 2 ]
 	then
 		if [ -f "/back/backup.tgz" ]
