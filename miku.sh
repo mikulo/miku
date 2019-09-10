@@ -1,7 +1,6 @@
 while true
 do
 echo -e "\033[32m欢迎使用多功能脚本,请输入序号选择功能\033[0m"
-chmod -R 0777 /root/miku.sh
 echo 1.tar打包备份系统
 echo 2.一键安装SSR多用户管理系统
 echo 3.一键安装V2RAY
@@ -11,6 +10,7 @@ echo 8.退出脚本
 read -p ">>" m1
 if [ "$m1" == 1 ]
 then
+	mkdir -p /back
 	rm /back/backup.tgz
 	echo $(date)" 删除原来的备份一次" >> /root/backuplog.txt
 	tar -cvpzf /back/backup.tgz --exclude=/proc --exclude=/lost+found --exclude=/home --exclude=/mnt --exclude=/sys --exclude=/media  --exclude=/back --exclude=/dev --exclude=/etc/default/grub --exclude=/etc/grub.d/ --exclude=/etc/group --exclude=/etc/group- --exclude=/boot /
