@@ -64,7 +64,8 @@ then
 	elif	[ "$m2" == 4 ]
 	then
 		break
-	else	echo -e "\033[32m输入错误\033[0m"
+	else	
+		echo -e "\033[32m输入错误\033[0m"
 		
 	fi
 	done
