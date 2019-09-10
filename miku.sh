@@ -31,7 +31,7 @@ then
 	echo 3.云端下载压缩包恢复系统
 	echo 4.返回上级菜单
 	read -p ">>" m2
-	if [ "$m2" == 1]
+	if [ "$m2" == 1 ]
 	then
 		mkdir -p /back
 		rm /back/backup.tgz
