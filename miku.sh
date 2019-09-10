@@ -2,8 +2,8 @@ while true
 do
 echo -e "\033[32m欢迎使用多功能脚本,请输入序号选择功能\033[0m"
 echo 1.tar打包备份系统
-echo 2.一键安装SSR多用户管理系统
-echo 3.一键安装V2RAY
+echo 2.安装SSR多用户管理系统
+echo 3.安装V2RAY
 echo 4.debian9或ubuntu18快速开启BBR
 echo 5.安装rclone
 echo 8.退出脚本
