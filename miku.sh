@@ -1,3 +1,11 @@
+if [ `id -u` -eq 0 ];
+then
+	:
+else
+	echo -e "\033[32m请用root用户执行本脚本!\033[0m"
+
+        exit
+fi
 if [ -f "/root/miku.sh" ]
 then
     if [ -f "/usr/local/sbin/miku" ]
