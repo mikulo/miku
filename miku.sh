@@ -60,7 +60,8 @@ then
 	elif	[ "$m2" == 3 ]
 	then	
 		read -p "请输入云端备份压缩包下载链接>>" m3
-		wget -c -N   -P /back $m3 -O backup.tgz
+		wget -c -N   $m3 -O backup.tgz
+		mv -i /root/backup.tgz /back
 		echo "下载完成"
 	elif	[ "$m2" == 4 ]
 	then
