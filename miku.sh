@@ -1,3 +1,14 @@
+if [ -f "/root/miku.sh" ]
+then
+    if [ -f "/usr/local/sbin/miku" ]
+    then
+    	chmod -R 0777 /usr/local/sbin/miku
+    else
+    	mv /root/miku.sh /usr/local/sbin/miku
+	chmod -R 0777 /usr/local/sbin/miku
+	
+    fi
+fi
 while true
 do
 echo -e "\033[32m欢迎使用多功能脚本,请输入序号选择功能\033[0m"
