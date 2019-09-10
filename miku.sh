@@ -5,6 +5,7 @@ echo 1.tar打包备份系统
 echo 2.一键安装SSR多用户管理系统
 echo 3.一键安装V2RAY
 echo 4.debian9或ubuntu18快速开启BBR
+echo 5.安装rclone
 echo 8.退出脚本
 read -p ">>" m1
 if [ "$m1" == 1 ]
@@ -37,6 +38,9 @@ then
 	lsmod | grep bbr
 	echo -e  "\033[32m⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆\033[0m"
 	echo  -e   "\033[32m如果上面输出显示\"tcp_bbr  20480  14\"类似字样即为开启成功\033[0m"
+elif	[ "$m1" == 5 ]
+then
+	wget https://www.moerats.com/usr/shell/rclone_debian.sh && bash rclone_debian.sh
 elif	[ "$m1" == 8 ]
 then
 	break
