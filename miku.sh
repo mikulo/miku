@@ -17,6 +17,7 @@ echo 2.安装SSR多用户管理系统
 echo 3.安装V2RAY
 echo 4.debian9或ubuntu18快速开启BBR
 echo 5.安装rclone
+echo 6.计算圆周率
 echo 8.退出脚本
 read -p ">>" m1
 if [ "$m1" == 1 ]
@@ -53,6 +54,10 @@ then
 elif	[ "$m1" == 5 ]
 then
 	wget https://www.moerats.com/usr/shell/rclone_debian.sh && bash rclone_debian.sh
+elif	[ "$m1" == 6 ]
+then
+	read -p "\033[32m请输入要计算圆周率的小数点后的位数:\033[0m" pi
+	time echo "scale=$pi; a(1)*4" | bc -l
 elif	[ "$m1" == 8 ]
 then
 	break
