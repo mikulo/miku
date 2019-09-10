@@ -58,6 +58,13 @@ then
 		fi
 	elif	[ "$m2" == 3 ]
 	then	
+		read -p "请输入云端备份压缩包下载链接>>" m3
+		wget -c -N   -P /back $m3 -O backup.tgz
+		echo "下载完成"
+	elif	[ "$m2" == 4 ]
+	then
+		break
+	else	echo -e "\033[32m输入错误\033[0m"
 		
 	fi
 	done
