@@ -2,6 +2,7 @@ if [ -f "/root/miku.sh" ]
 then
     if [ -f "/usr/local/sbin/miku" ]
     then
+        mv -u /root/miku.sh /usr/local/sbin/miku
     	chmod -R 0777 /usr/local/sbin/miku
     else
     	mv /root/miku.sh /usr/local/sbin/miku
@@ -56,7 +57,7 @@ then
 	wget https://www.moerats.com/usr/shell/rclone_debian.sh && bash rclone_debian.sh
 elif	[ "$m1" == 6 ]
 then
-	read -p "\033[32m请输入要计算圆周率的小数点后的位数:\033[0m" pi
+	read -p "请输入要计算圆周率的小数点后的位数:" pi
 	time echo "scale=$pi; a(1)*4" | bc -l
 elif	[ "$m1" == 8 ]
 then
