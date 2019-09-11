@@ -21,7 +21,7 @@ fi
 while true
 do
 echo -e "\033[32m欢迎使用多功能脚本,请输入序号选择功能\033[0m"
-echo -e "\033[32m当前版本为:0.03\033[0m" 
+echo -e "\033[32m当前版本为:0.04\033[0m" 
 echo 1.tar备份恢复系统
 echo 2.安装SSR多用户管理系统
 echo 3.安装V2RAY
@@ -88,12 +88,31 @@ then
 	bash <(curl -s -L https://git.io/v2ray.sh)
 elif	[ "$m1" == 4 ]
 then
-	echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
-	echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
-	sysctl -p
-	lsmod | grep bbr
-	echo -e  "\033[32m⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆\033[0m"
-	echo  -e   "\033[32m如果上面输出显示\"tcp_bbr  20480  14\"类似字样即为开启成功\033[0m"
+	while true
+	do
+	echo 1.debian9/ubuntu18快速开启BBR(无需重启更换内核)
+	echo 2.更换内核开启BBR
+	echo 3.返回上级
+	read -p ">>" m2
+	if [ "$m2" == 1 ]
+	then
+		echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+		echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+		sysctl -p
+		lsmod | grep bbr
+		echo -e  "\033[32m⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆\033[0m"
+		echo  -e   "\033[32m如果上面输出显示\"tcp_bbr  20480  14\"类似字样即为开启成功\033[0m"
+	elif	[ "$m2" == 2 ]
+	then
+		wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubiBackup/doubi/master/bbr.sh && chmod +x bbr.sh && bash bbr.sh
+	elif	[ "$m2" == 3 ]
+	then	
+		break
+	else	
+		echo -e "\033[32m输入错误\033[0m"
+		
+	fi
+	done
 elif	[ "$m1" == 5 ]
 then
 	wget https://www.moerats.com/usr/shell/rclone_debian.sh && bash rclone_debian.sh
