@@ -25,7 +25,7 @@ echo -e "\033[32m当前版本为:0.04\033[0m"
 echo 1.tar备份恢复系统
 echo 2.安装SSR多用户管理系统
 echo 3.安装V2RAY
-echo 4.debian9或ubuntu18快速开启BBR
+echo 4.开启BBR加速
 echo 5.安装rclone
 echo 6.计算圆周率
 echo 7.更新脚本
@@ -88,6 +88,8 @@ then
 	bash <(curl -s -L https://git.io/v2ray.sh)
 elif	[ "$m1" == 4 ]
 then
+	while true
+	do
 	echo 1.debian9或ubuntu18快速开启BBR
 	echo 2.更换内核开启BBR
 	echo 3.返回上级
@@ -110,6 +112,7 @@ then
 		echo -e "\033[32m输入错误\033[0m"
 		
 	fi
+	done
 elif	[ "$m1" == 5 ]
 then
 	wget https://www.moerats.com/usr/shell/rclone_debian.sh && bash rclone_debian.sh
