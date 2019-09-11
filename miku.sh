@@ -1,4 +1,4 @@
-ver = 0.01
+ver = "0.01"
 if [ `id -u` -eq 0 ];
 then
 	:
@@ -108,6 +108,8 @@ then
 	chmod -R 0777 /root/miku.sh
 	mv -u /root/miku.sh /usr/local/sbin/miku
 	echo -e "\033[32m更新完成\033[0m"
+	exit
+	miku
 elif	[ "$m1" == 0 ]
 then
 	break
