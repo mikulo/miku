@@ -22,7 +22,7 @@ fi
 while true
 do
 echo -e "\033[32m欢迎使用多功能脚本,请输入序号选择功能\033[0m"
-echo -e "\033[32m 当前版本为:\033[0m" "\033[32m $ver \033[0m"
+echo -e "\033[32m 当前版本为: ${ver} \033[0m" 
 echo 1.tar备份恢复系统
 echo 2.安装SSR多用户管理系统
 echo 3.安装V2RAY
