@@ -10,10 +10,10 @@ if [ -f "/root/miku.sh" ]
 then
     if [ -f "/usr/local/sbin/miku" ]
     then
-        mv -u /root/miku.sh /usr/local/sbin/miku
+        mv -f /root/miku.sh /usr/local/sbin/miku
     	chmod -R 0777 /usr/local/sbin/miku
     else
-    	mv /root/miku.sh /usr/local/sbin/miku
+    	mv -f /root/miku.sh /usr/local/sbin/miku
 	chmod -R 0777 /usr/local/sbin/miku
 	
     fi
