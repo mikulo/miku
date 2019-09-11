@@ -112,6 +112,8 @@ then
 	miku
 elif	[ "$m1" == 0 ]
 then
+	
+	echo -e "\033[32m退出完成,执行miku再次打开本脚本\033[0m"	
 	break
 
 
