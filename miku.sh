@@ -103,10 +103,11 @@ then
 	time echo "scale=$pi; a(1)*4" | bc -l
 elif	[ "$m1" == 7 ]
 then
+	rm -f /usr/local/sbin/miku
 	wget -N  https://raw.githubusercontent.com/mikulo/miku/master/miku.sh
 	chmod -R 0777 /root/miku.sh
 	mv -u /root/miku.sh /usr/local/sbin/miku
-	echo -e "\033[32m更新完成!请退出重启本脚本!\033[0m"
+	echo -e "\033[32m更新完成!请重启本脚本!\033[0m"
 elif	[ "$m1" == 0 ]
 then
 	
