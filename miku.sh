@@ -88,7 +88,7 @@ then
 	bash <(curl -s -L https://git.io/v2ray.sh)
 elif	[ "$m1" == 4 ]
 then
-	echo 1.debian9\/ubuntu18快速开启BBR\(无需重启更换内核\)
+	echo 1.debian9或ubuntu18快速开启BBR
 	echo 2.更换内核开启BBR
 	echo 3.返回上级
 	read -p ">>" m2
