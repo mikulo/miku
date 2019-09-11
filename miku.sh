@@ -29,6 +29,7 @@ echo 4.开启BBR加速
 echo 5.安装rclone
 echo 6.计算圆周率
 echo 7.更新脚本
+echo 8.卸载脚本
 echo 0.退出脚本
 read -p ">>" m1
 if [ "$m1" == 1 ]
@@ -133,8 +134,11 @@ then
 	
 	echo -e "\033[32m退出完成,执行miku再次打开本脚本\033[0m"	
 	break
-
-
+elif	[ "$m1" == 8 ]
+then
+	rm -rf /usr/local/sbin/miku
+	echo -e "\033[32m卸载完成\033[0m"	
+	break
 else
 	echo -e "\033[32m输入错误\033[0m"
 
