@@ -107,7 +107,8 @@ then
 	wget -N  https://raw.githubusercontent.com/mikulo/miku/master/miku.sh
 	chmod -R 0777 /root/miku.sh
 	mv -u /root/miku.sh /usr/local/sbin/miku
-	echo -e "\033[32m更新完成!请重启本脚本!\033[0m"
+	echo -e "\033[32m更新完成!请执行miku重启本脚本!\033[0m"
+	exit
 elif	[ "$m1" == 0 ]
 then
 	
