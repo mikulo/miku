@@ -88,9 +88,7 @@ then
 	bash <(curl -s -L https://git.io/v2ray.sh)
 elif	[ "$m1" == 4 ]
 then
-	while true
-	do
-	echo 1.debian9/ubuntu18快速开启BBR\(无需重启更换内核\)
+	echo 1.debian9\/ubuntu18快速开启BBR\(无需重启更换内核\)
 	echo 2.更换内核开启BBR
 	echo 3.返回上级
 	read -p ">>" m2
@@ -112,7 +110,6 @@ then
 		echo -e "\033[32m输入错误\033[0m"
 		
 	fi
-	done
 elif	[ "$m1" == 5 ]
 then
 	wget https://www.moerats.com/usr/shell/rclone_debian.sh && bash rclone_debian.sh
