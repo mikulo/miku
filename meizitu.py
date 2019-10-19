@@ -44,7 +44,7 @@ for x in range(1,210000):
                     f.write(d.content)
                 img = open('1.jpg', 'rb')
                 bot.send_photo(chat_id='@baisimeitu', photo=img)
-                time.sleep(random.randint(5,30))
+                time.sleep(random.randint(20,120))
                 
     else:
         continue
