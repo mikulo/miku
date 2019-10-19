@@ -30,15 +30,16 @@ def downloadpng2(a,b):
             return downlink[0]
         else:
             return 0
-for x in range(1,3):
+for x in range(1,210000):
+    print(x)
     b = downloadpng1(x)
-    print(b)
+    #print(b)
     if b != 0 :
         for v in range(1,b+1):
             c = downloadpng2(x,v)
             if c!=0:
                 d = req.get(c,cookies=cookies,headers=headers)
-                print(d.status_code)
+                #print(d.status_code)
                 with open('./'+r'1.jpg', 'wb') as f:
                     f.write(d.content)
                 img = open('1.jpg', 'rb')
