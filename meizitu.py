@@ -1,15 +1,20 @@
 import requests as req                                                                                                             
-import os                                                                                                                          
-import telegram                                                                                                                    
-import re                                                                                                                          
-import random                                                                                                                      
-import time
-import json
-txt = open('./1.txt', 'r')
-string = txt.read()
-txt.close()
-sum_dict = json.loads(string)
-sum = int(sum_dict['sum'])
+import os,telegram,re,random,time,json
+if os.path.exists('1.txt') == True:
+    txt = open('./1.txt', 'r')
+    string = txt.read()
+    txt.close()
+    sum_dict = json.loads(string)
+    sum = int(sum_dict['sum'])
+else:
+    sum_dict = {"sum": "0"}
+    string = json.dumps(sum_dict)
+    txt = open('./1.txt', 'w')
+    txt.write(string)
+    txt.close()
+    sum = 0
+    
+
 ci = 0                                                                                                                             
 cookies = {'cookies':'Hm_lvt_dbc355aef238b6c32b43eacbbf161c3c=1571490941; Hm_lpvt_dbc355aef238b6c32b43eacbbf161c3c=1571503274'}    
 bot = telegram.Bot(token='716376253:AAEKXSr17ZSSAuo-gTjWSo2IOFDCSVziZqs')                                                          
