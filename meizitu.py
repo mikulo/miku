@@ -1,5 +1,11 @@
 import requests as req                                                                                                             
 import os,telegram,re,random,time,json
+mixtime = int(input('请输入两次下载最小间隔时间，单位为秒:'))
+maxtime = int(input('请输入两次下载最大间隔时间，单位为秒:'))
+while(mixtime >= maxtime):
+    print('最大间隔时间小于或等于最小间隔时间,请重新输入!')
+    mixtime = int(input('请输入两次下载最小间隔时间，单位为秒:'))
+    maxtime = int(input('请输入两次下载最大间隔时间，单位为秒:'))
 if os.path.exists('1.txt') == True:
     txt = open('./1.txt', 'r')
     string = txt.read()
@@ -43,16 +49,16 @@ def downloadpng2(a,b):
         else:                                                                                                                      
             return 0                                                                                                               
 for x in range(sum+1,210000):                                                                                                        
-    print(x)                                                                                                                       
+    print('正在下载id为'+str(x)+"的图片集")                                                                                                                       
     b = downloadpng1(x)                                                                                                            
     #print(b)                                                                                                                      
     if b != 0 :                                                                                                                    
         for v in range(1,b+1):                                                                                                     
-            print(v)                                                                                                               
+            print('正在下载该图片集下第'+str(v)+'本')                                                                                                               
             c = downloadpng2(x,v)                                                                                                  
             if c!=0:                                                                                                               
                 d = req.get(c,cookies=cookies,headers=headers)                                                                     
-                print(d.status_code)                                                                                               
+                print('该图片集下第'+str(v)+'本状态响应码为:'+str(d.status_code))                                                                                               
                 with open('./'+r'1.jpg', 'wb') as f:                                                                               
                     f.write(d.content)                                                                                             
                 img = open('1.jpg', 'rb')                                                                                          
@@ -71,7 +77,7 @@ for x in range(sum+1,210000):
                     time.sleep(600)                                                                                                
                 else:                                                                                                              
                                                                                                                                    
-                    time.sleep(random.randint(20,40))                                                                              
+                    time.sleep(random.randint(mixtime,maxtime))                                                                              
                                                                                                                                    
     else:
         sum +=1
