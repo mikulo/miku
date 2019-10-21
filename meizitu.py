@@ -70,7 +70,7 @@ def all():
                     img = open('1.jpg', 'rb')                                                                                          
                     bot.send_photo(chat_id='@baisimeitu', photo=img)                                                                   
 
-            time.sleep(random.random(mixtime,maxtime))                                                                              
+            time.sleep(random.uniform(mixtime,maxtime))                                                                              
                                                                                                                                        
         else:
             sum +=1
@@ -79,17 +79,6 @@ def all():
             txt = open('./1.txt', 'w')
             txt.write(string)
             txt.close()                   
-            time.sleep(random.random(1,3))
-def main():
-    p1 = multiprocessing.Process(target = all, args = (2,))
-    time.sleep(3)                  
-    p2 = multiprocessing.Process(target = all, args = (3,))
-    time.sleep(3)
-    p3 = multiprocessing.Process(target = all, args = (4,))
-
-    p1.start()
-    p2.start()
-    p3.start()
-
+            time.sleep(random.uniform(0,0.5))
 if __name__ == '__main__':
-    main()
+    all()
