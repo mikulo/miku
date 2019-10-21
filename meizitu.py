@@ -38,54 +38,56 @@ def downloadpng2(a,b):
         else:                                                                                                                      
             return 0
 def all():
-    if os.path.exists('1.txt') == True:
-        txt = open('./1.txt', 'r')
-        string = txt.read()
-        txt.close()
-        sum_dict = json.loads(string)
-        sum = int(sum_dict['sum'])
-    else:
-        sum_dict = {"sum": "1"}
-        string = json.dumps(sum_dict)
-        txt = open('./1.txt', 'w')
-        txt.write(string)
-        txt.close()
-        sum = 1                                                                                                           
-    print('正在下载id为'+str(sum)+"的图片集")                                                                                                                       
-    b = downloadpng1(sum)                                                                                                            
-    #print(b)                                                                                                                      
-    if b != 0 :
-        sum +=1
-        sum_dict['sum'] = str(sum)
-        string = json.dumps(sum_dict)
-        txt = open('./1.txt', 'w')
-        txt.write(string)
-        txt.close()
-        for v in range(1,b+1):                                                                                                     
-            print('正在下载该图片集下第'+str(v)+'本')                                                                                                               
-            c = downloadpng2(sum-1,v)                                                                                                  
-            if c!=0:                                                                                                               
-                d = req.get(c,cookies=cookies,headers=headers)                                                                     
-                print('该图片集下第'+str(v)+'本状态响应码为:'+str(d.status_code))                                                                                               
-                with open('./'+r'1.jpg', 'wb') as f:                                                                               
-                    f.write(d.content)                                                                                             
-                img = open('1.jpg', 'rb')                                                                                          
-                bot.send_photo(chat_id='@baisimeitu', photo=img)                                                                   
+    while True:
+        if os.path.exists('1.txt') == True:
+            txt = open('./1.txt', 'r')
+            string = txt.read()
+            txt.close()
+            sum_dict = json.loads(string)
+            sum = int(sum_dict['sum'])
+        else:
+            sum_dict = {"sum": "1"}
+            string = json.dumps(sum_dict)
+            txt = open('./1.txt', 'w')
+            txt.write(string)
+            txt.close()
+            sum = 1                                                                                                           
+        print('正在下载id为'+str(sum)+"的图片集")                                                                                                                       
+        b = downloadpng1(sum)                                                                                                            
+        #print(b)                                                                                                                      
+        if b != 0 :
+            sum +=1
+            sum_dict['sum'] = str(sum)
+            string = json.dumps(sum_dict)
+            txt = open('./1.txt', 'w')
+            txt.write(string)
+            txt.close()
+            for v in range(1,b+1):                                                                                                     
+                print('正在下载该图片集下第'+str(v)+'本')                                                                                                               
+                c = downloadpng2(sum-1,v)                                                                                                  
+                if c!=0:                                                                                                               
+                    d = req.get(c,cookies=cookies,headers=headers)                                                                     
+                    print('该图片集下第'+str(v)+'本状态响应码为:'+str(d.status_code))                                                                                               
+                    with open('./'+r'1.jpg', 'wb') as f:                                                                               
+                        f.write(d.content)                                                                                             
+                    img = open('1.jpg', 'rb')                                                                                          
+                    bot.send_photo(chat_id='@baisimeitu', photo=img)                                                                   
 
-        time.sleep(random.randint(mixtime,maxtime))                                                                              
-                                                                                                                                   
-    else:
-        sum +=1
-        sum_dict['sum'] = str(sum)
-        string = json.dumps(sum_dict)
-        txt = open('./1.txt', 'w')
-        txt.write(string)
-        txt.close()                   
-        time.sleep(1)
+            time.sleep(random.randint(mixtime,maxtime))                                                                              
+                                                                                                                                       
+        else:
+            sum +=1
+            sum_dict['sum'] = str(sum)
+            string = json.dumps(sum_dict)
+            txt = open('./1.txt', 'w')
+            txt.write(string)
+            txt.close()                   
+            time.sleep(1)
 def main():
     t1 = threading.Thread(target=all)
     t2 = threading.Thread(target=all)
     t1.start()
+    time.sleep(1)
     t2.start()
 
     # 等待两个子线程结束再结束主线程
