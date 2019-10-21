@@ -1,5 +1,5 @@
 import requests as req
-import threading
+import multiprocessing
 import os,telegram,re,random,time,json
 mixtime = int(input('请输入两次下载最小间隔时间，单位为秒:'))
 maxtime = int(input('请输入两次下载最大间隔时间，单位为秒:'))
@@ -7,8 +7,6 @@ while(mixtime >= maxtime):
     print('最大间隔时间小于或等于最小间隔时间,请重新输入!')
     mixtime = int(input('请输入两次下载最小间隔时间，单位为秒:'))
     maxtime = int(input('请输入两次下载最大间隔时间，单位为秒:'))
-    
-lock = threading.Lock()
 cookies = {'cookies':'Hm_lvt_dbc355aef238b6c32b43eacbbf161c3c=1571490941; Hm_lpvt_dbc355aef238b6c32b43eacbbf161c3c=1571503274'}    
 bot = telegram.Bot(token='716376253:AAEKXSr17ZSSAuo-gTjWSo2IOFDCSVziZqs')                                                          
 headers = {                                                                                                                        
@@ -52,21 +50,17 @@ def all():
             txt.close()
             sum = 1                                                                                                           
         print('正在下载id为'+str(sum)+"的图片集")
-        lock.acquire()
         b = downloadpng1(sum)
-        lock.release()
         #print(b)                                                                                                                      
         if b != 0 :
-            lock.acquire()
             sum +=1
-            lock.release()
             sum_dict['sum'] = str(sum)
             string = json.dumps(sum_dict)
             txt = open('./1.txt', 'w')
             txt.write(string)
             txt.close()
             for v in range(1,b+1):                                                                                                     
-                print('正在下载id为'+str(sum)+"该图片集下第'+str(v)+'本')                                                                                                               
+                print('正在下载id为'+str(sum)+'该图片集下第'+str(v)+'本')                                                                                                               
                 c = downloadpng2(sum-1,v)                                                                                                  
                 if c!=0:                                                                                                               
                     d = req.get(c,cookies=cookies,headers=headers)                                                                     
@@ -76,7 +70,7 @@ def all():
                     img = open('1.jpg', 'rb')                                                                                          
                     bot.send_photo(chat_id='@baisimeitu', photo=img)                                                                   
 
-            time.sleep(random.randint(mixtime,maxtime))                                                                              
+            time.sleep(random.random(mixtime,maxtime))                                                                              
                                                                                                                                        
         else:
             sum +=1
@@ -85,17 +79,17 @@ def all():
             txt = open('./1.txt', 'w')
             txt.write(string)
             txt.close()                   
-            time.sleep(1)
+            time.sleep(random.random(1,3))
 def main():
-    t1 = threading.Thread(target=all)
-    t2 = threading.Thread(target=all)
-    t1.start()
+    p1 = multiprocessing.Process(target = all, args = (2,))
+    time.sleep(3)                  
+    p2 = multiprocessing.Process(target = all, args = (3,))
     time.sleep(3)
-    t2.start()
+    p3 = multiprocessing.Process(target = all, args = (4,))
 
-    # 等待两个子线程结束再结束主线程
-    t1.join()
-    t2.join()
+    p1.start()
+    p2.start()
+    p3.start()
 
 if __name__ == '__main__':
     main()
