@@ -8,8 +8,7 @@ while(mixtime >= maxtime):
     mixtime = int(input('请输入两次下载最小间隔时间，单位为秒:'))
     maxtime = int(input('请输入两次下载最大间隔时间，单位为秒:'))
     
-
-ci = 0                                                                                                                             
+lock = threading.Lock()
 cookies = {'cookies':'Hm_lvt_dbc355aef238b6c32b43eacbbf161c3c=1571490941; Hm_lpvt_dbc355aef238b6c32b43eacbbf161c3c=1571503274'}    
 bot = telegram.Bot(token='716376253:AAEKXSr17ZSSAuo-gTjWSo2IOFDCSVziZqs')                                                          
 headers = {                                                                                                                        
@@ -52,18 +51,22 @@ def all():
             txt.write(string)
             txt.close()
             sum = 1                                                                                                           
-        print('正在下载id为'+str(sum)+"的图片集")                                                                                                                       
-        b = downloadpng1(sum)                                                                                                            
+        print('正在下载id为'+str(sum)+"的图片集")
+        lock.acquire()
+        b = downloadpng1(sum)
+        lock.release()
         #print(b)                                                                                                                      
         if b != 0 :
+            lock.acquire()
             sum +=1
+            lock.release()
             sum_dict['sum'] = str(sum)
             string = json.dumps(sum_dict)
             txt = open('./1.txt', 'w')
             txt.write(string)
             txt.close()
             for v in range(1,b+1):                                                                                                     
-                print('正在下载该图片集下第'+str(v)+'本')                                                                                                               
+                print('正在下载id为'+str(sum)+"该图片集下第'+str(v)+'本')                                                                                                               
                 c = downloadpng2(sum-1,v)                                                                                                  
                 if c!=0:                                                                                                               
                     d = req.get(c,cookies=cookies,headers=headers)                                                                     
@@ -87,7 +90,7 @@ def main():
     t1 = threading.Thread(target=all)
     t2 = threading.Thread(target=all)
     t1.start()
-    time.sleep(1)
+    time.sleep(3)
     t2.start()
 
     # 等待两个子线程结束再结束主线程
