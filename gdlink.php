@@ -66,6 +66,9 @@ elseif($mode=="cf")
 {	
 	//获取随机站点
 	$num = rand(0,count($address)-1);
+	$link = "$address[$num]/link/$id";
+	header("Location: $link");
+	exit;/*		
 	while (true)
 	{	//判断cf站点是否可用，不可用继续随机挑选到可用为止
 		if (getcode($address[$num])== 200)
@@ -79,7 +82,7 @@ elseif($mode=="cf")
 		{
 			$num = rand(0,count($address)-1);
 		}
-	}
+	}*/
 
 
 }
@@ -88,6 +91,9 @@ elseif($mode=="dict")
 	//使用谷歌官方直链
 	//获取随机站点
 	$num = rand(0,count($address)-1);
+	$link = "$address[$num]/link/$id?output=redirect";
+	header("Location: $link");
+	exit;/*	
 	while (true)
 	{	//判断cf站点是否可用，不可用继续随机挑选到可用为止
 		if (getcode($address[$num])== 200)
@@ -101,7 +107,7 @@ elseif($mode=="dict")
 		{
 			$num = rand(0,count($address)-1);
 		}
-	}	
+	}	*/
 	/*备用方案
 	include('fetch.php');
 	if(empty($_GET['id'])){
