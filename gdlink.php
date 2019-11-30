@@ -15,6 +15,27 @@ function get_ip_lookup($ip=null){
     }
     
 }
+//定义计数参数
+function num($mo){
+if ($mo==1)
+{
+	$myfile = fopen("num.txt", "r") or die("Unable to open file!");
+	$num = fgets($myfile)+1;
+	fclose($myfile);
+	$myfile = fopen("num.txt", "w+") or die("Unable to open file!");
+	fwrite($myfile, $num);
+	fclose($myfile);
+	return $num ;
+}
+else
+{
+	$myfile = fopen("num.txt", "r") or die("Unable to open file!");
+	$num = fgets($myfile);
+	fclose($myfile);
+	return $num ;
+}
+
+}
 //定义cf返回code函数
 function getcode($url){
     $ch = curl_init($url);
@@ -59,8 +80,9 @@ else
 
 }
 if ($id == "")
-{
-	echo "请在url上加上参数!<br>格式如下:<br>https://gdlink.432100.xyz/?id=文件id<br>获取直链前应将文件设置全网分享(教育版和团队盘可以在PC网页设置)<br>自动识别ip地址<br>国内ip访问强制使用cf中转<br>国外ip访问默认使用谷歌官方直链<br>国外ip访问如果需要使用cf中转需要按如下格式访问:<br>https://gdlink.432100.xyz/?id=文件id&mode=cf<br>或<br>https://gdlink.432100.xyz/?id=文件id&mode=0";
+{	
+	$num = num(0);
+	echo "请在url上加上参数!<br>格式如下:<br>https://gdlink.432100.xyz/?id=文件id<br>获取直链前应将文件设置全网分享(教育版和团队盘可以在PC网页设置)<br>自动识别ip地址<br>国内ip访问强制使用cf中转<br>国外ip访问默认使用谷歌官方直链<br>国外ip访问如果需要使用cf中转需要按如下格式访问:<br>https://gdlink.432100.xyz/?id=文件id&mode=cf<br>或<br>https://gdlink.432100.xyz/?id=文件id&mode=0<br>今日api调用次数:$num";
 }
 elseif($mode=="cf")
 {	
@@ -68,6 +90,7 @@ elseif($mode=="cf")
 	$num = rand(0,count($address)-1);
 	$link = "$address[$num]/link/$id";
 	header("Location: $link");
+	num(1);
 	exit;/*		
 	while (true)
 	{	//判断cf站点是否可用，不可用继续随机挑选到可用为止
@@ -90,10 +113,11 @@ elseif($mode=="dict")
 {	
 	//使用谷歌官方直链
 	//获取随机站点
+	/*	//通过cf获取谷歌官方直链
 	$num = rand(0,count($address)-1);
 	$link = "$address[$num]/link/$id?output=redirect";
 	header("Location: $link");
-	exit;/*	
+	exit;
 	while (true)
 	{	//判断cf站点是否可用，不可用继续随机挑选到可用为止
 		if (getcode($address[$num])== 200)
@@ -107,8 +131,8 @@ elseif($mode=="dict")
 		{
 			$num = rand(0,count($address)-1);
 		}
-	}	*/
-	/*备用方案
+	}	*///通过cf获取谷歌官方直链,备用方案
+	$num = num(1);
 	include('fetch.php');
 	if(empty($_GET['id'])){
 		exit('no file id');
@@ -134,7 +158,7 @@ elseif($mode=="dict")
 		echo $resp->content;
 	}else{
 	    exit('no download link');
-	}*/
+	}//备用方案
 }
 
 ?>
