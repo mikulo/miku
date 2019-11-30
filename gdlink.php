@@ -26,10 +26,16 @@ function getcode($url){
 }
 
 //添加cf直链网址到数组
-$address = array("https://link.leng.workers.dev",
+$address = array("https://link.leng0.workers.dev",
 				 "https://link.leng1.workers.dev",
 				 "https://link.leng2.workers.dev",
-				 "https://link.leng3.workers.dev"
+				 "https://link.leng3.workers.dev",
+				 "https://link.leng5.workers.dev",
+				 "https://link.leng6.workers.dev",
+				 "https://link.leng7.workers.dev",
+				 "https://link.leng8.workers.dev",
+				 "https://link.leng9.workers.dev",
+				 "https://link.leng10.workers.dev"
 			
 );
 
@@ -54,7 +60,7 @@ else
 }
 if ($id == "")
 {
-	echo "请在url上加上参数!";
+	echo "请在url上加上参数!<br>格式如下:<br>https://gdlink.432100.xyz/?id=文件id<br>获取直链前应将文件设置全网分享(教育版和团队盘可以在PC网页设置)<br>自动识别ip地址<br>国内ip访问强制使用cf中转<br>国外ip访问默认使用谷歌官方直链<br>国外ip访问如果需要使用cf中转需要按如下格式访问:<br>https://gdlink.432100.xyz/?id=文件id&mode=cf<br>或<br>https://gdlink.432100.xyz/?id=文件id&mode=0";
 }
 elseif($mode=="cf")
 {	
