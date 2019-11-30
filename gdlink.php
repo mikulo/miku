@@ -79,6 +79,23 @@ elseif($mode=="0")
 elseif($mode=="1")
 {	
 	//使用谷歌官方直链
+	//获取随机站点
+	$num = rand(0,count($address)-1);
+	while (true)
+	{	//判断cf站点是否可用，不可用继续随机挑选到可用为止
+		if (getcode($address[$num])== 200)
+		{
+			$link = "$address[$num]/link/$id?output=redirect";
+			//echo $num+1;
+			header("Location: $link");
+			exit;	
+		}
+		else
+		{
+			$num = rand(0,count($address)-1);
+		}
+	}	
+	/*备用方案
 	include('fetch.php');
 	if(empty($_GET['id'])){
 		exit('no file id');
@@ -104,7 +121,7 @@ elseif($mode=="1")
 		echo $resp->content;
 	}else{
 	    exit('no download link');
-	}
+	}*/
 }
 
 ?>
