@@ -38,16 +38,17 @@ $mode = $_GET["mode"];
 $ip = $_SERVER["REMOTE_ADDR"];
 if (get_ip_lookup($ip) == 1)
 {
-	$mode = "0";
+	$mode = "cf";
 }
 else
-{	if ($mode=="1")
+{	
+	if ($mode=="")
 	{
-		$mode = "0";	
+		$mode = "dict";	
 	}
 	else
 	{
-		$mode = "1";
+		$mode = "cf";
 	}
 
 }
@@ -55,7 +56,7 @@ if ($id == "")
 {
 	echo "请在url上加上参数!";
 }
-elseif($mode=="0")
+elseif($mode=="cf")
 {	
 	//获取随机站点
 	$num = rand(0,count($address)-1);
@@ -76,7 +77,7 @@ elseif($mode=="0")
 
 
 }
-elseif($mode=="1")
+elseif($mode=="dict")
 {	
 	//使用谷歌官方直链
 	//获取随机站点
