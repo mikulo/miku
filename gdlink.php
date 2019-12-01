@@ -1,7 +1,20 @@
 <html>
 <body>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?461253cb3bccbdedb1a8e8577004856e";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 
 <?php 
+//选择cf获取直链还是php获取直链
+$mode_cf_php = "php";
+//设置开启排除无法使用的cf帐号
+$remove = false;
 //定义ip国家子函数,如果从中国访问,返回1，否则返回0
 function get_ip_lookup($ip=null){
     $res = @file_get_contents('http://ip.taobao.com/service/getIpInfo.php?ip=' . $ip);
@@ -87,78 +100,104 @@ if ($id == "")
 elseif($mode=="cf")
 {	
 	//获取随机站点
-	$num = rand(0,count($address)-1);
-	$link = "$address[$num]/link/$id";
-	header("Location: $link");
-	num(1);
-	exit;/*		
-	while (true)
-	{	//判断cf站点是否可用，不可用继续随机挑选到可用为止
-		if (getcode($address[$num])== 200)
-		{
-			$link = "$address[$num]/link/$id";
-			//echo $num+1;
-			header("Location: $link");
-			exit;	
-		}
-		else
-		{
-			$num = rand(0,count($address)-1);
-		}
-	}*/
+	if(remove==false)
+	{
+		$num = rand(0,count($address)-1);
+		$link = "$address[$num]/link/$id";
+		header("Location: $link");
+//		num(1);
+		exit;	
+	}
+	else
+	{
+		while (true)
+		{	//判断cf站点是否可用，不可用继续随机挑选到可用为止
+			if (getcode($address[$num])== 200)
+			{
+				$link = "$address[$num]/link/$id";
+				//echo $num+1;
+				header("Location: $link");
+				exit;	
+			}
+			else
+			{
+				$num = rand(0,count($address)-1);
+			}
+		}	
+	}
+
 
 
 }
 elseif($mode=="dict")
 {	
 	//使用谷歌官方直链
-	//获取随机站点
-	/*	//通过cf获取谷歌官方直链
-	$num = rand(0,count($address)-1);
-	$link = "$address[$num]/link/$id?output=redirect";
-	header("Location: $link");
-	exit;
-	while (true)
-	{	//判断cf站点是否可用，不可用继续随机挑选到可用为止
-		if (getcode($address[$num])== 200)
+
+	if ($mode_cf_php=="cf")
+	{
+		//获取随机站点
+		//通过cf获取谷歌官方直链
+		if(remove==false)
 		{
+			$num = rand(0,count($address)-1);
 			$link = "$address[$num]/link/$id?output=redirect";
-			//echo $num+1;
 			header("Location: $link");
-			exit;	
+		//	num(1);
+			exit;
 		}
 		else
 		{
-			$num = rand(0,count($address)-1);
+			while (true)
+			{	//判断cf站点是否可用，不可用继续随机挑选到可用为止
+				if (getcode($address[$num])== 200)
+				{
+					$link = "$address[$num]/link/$id?output=redirect";
+					//echo $num+1;
+					header("Location: $link");
+					exit;	
+				}
+				else
+				{
+					$num = rand(0,count($address)-1);
+				}
+			}	
 		}
-	}	*///通过cf获取谷歌官方直链,备用方案
-	$num = num(1);
-	include('fetch.php');
-	if(empty($_GET['id'])){
-		exit('no file id');
 	}
-	//get confirm
-	$resp = fetch::get('https://drive.google.com/uc?export=download&id='.$id);
-	//  <25M
-	if(!empty($resp->headers['Location'])){
-		header('location: '.$resp->headers['Location']);
-		echo $resp->content;
+
+
+	if ($mode_cf_php=="php")
+	{
+		//通过cf获取谷歌官方直链,备用方案
+	//	$num = num(1);
+		include('fetch.php');
+		if(empty($_GET['id'])){
+			exit('no file id');
+		}
+		//get confirm
+		$resp = fetch::get('https://drive.google.com/uc?export=download&id='.$id);
+		//  <25M
+		if(!empty($resp->headers['Location'])){
+			header('location: '.$resp->headers['Location']);
+			echo $resp->content;
+		}
+		list($tmp, $confirm) = explode('download&amp;confirm=', $resp->content);
+		list($confirm, $tmp) = explode('&amp;id=', $confirm);
+	    if(empty($confirm)){
+			exit('get confirm error');
+		}
+		
+		//get download link
+		$url = "https://drive.google.com/uc?export=download&confirm={$confirm}&id={$id}";
+		$resp = fetch::get($url);
+		if(!empty($resp->headers['Location'])){
+			header('location: '.$resp->headers['Location']);
+			echo $resp->content;
+		}else{
+		    exit('no download link');
+		}
+		//备用方案		
 	}
-	list($tmp, $confirm) = explode('download&amp;confirm=', $resp->content);
-	list($confirm, $tmp) = explode('&amp;id=', $confirm);
-    if(empty($confirm)){
-		exit('get confirm error');
-	}
-	
-	//get download link
-	$url = "https://drive.google.com/uc?export=download&confirm={$confirm}&id={$id}";
-	$resp = fetch::get($url);
-	if(!empty($resp->headers['Location'])){
-		header('location: '.$resp->headers['Location']);
-		echo $resp->content;
-	}else{
-	    exit('no download link');
-	}//备用方案
+
 }
 
 ?>
