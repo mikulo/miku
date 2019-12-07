@@ -15,6 +15,19 @@ var _hmt = _hmt || [];
 $mode_cf_php = "php";
 //设置开启排除无法使用的cf帐号
 $remove = false;
+//添加cf直链网址到数组,把网址按格式填入即可
+$address = array("https://link.leng0.workers.dev",
+				 "https://link.leng1.workers.dev",
+				 "https://link.leng2.workers.dev",
+				 "https://link.leng3.workers.dev",
+				 "https://link.leng5.workers.dev",
+				 "https://link.leng6.workers.dev",
+				 "https://link.leng7.workers.dev",
+				 "https://link.leng8.workers.dev",
+				 "https://link.leng9.workers.dev",
+				 "https://link.leng10.workers.dev"
+			
+);
 //定义ip国家子函数,如果从中国访问,返回1，否则返回0
 function get_ip_lookup($ip=null){
     $res = @file_get_contents('http://ip.taobao.com/service/getIpInfo.php?ip=' . $ip);
@@ -74,21 +87,10 @@ function getcode($url){
     return $httpcode;
 }
 
-//添加cf直链网址到数组
-$address = array("https://link.leng0.workers.dev",
-				 "https://link.leng1.workers.dev",
-				 "https://link.leng2.workers.dev",
-				 "https://link.leng3.workers.dev",
-				 "https://link.leng5.workers.dev",
-				 "https://link.leng6.workers.dev",
-				 "https://link.leng7.workers.dev",
-				 "https://link.leng8.workers.dev",
-				 "https://link.leng9.workers.dev",
-				 "https://link.leng10.workers.dev"
-			
-);
+
 
 $id = $_GET["id"];
+$lanzou = $_GET["lanzou"];
 $mode = $_GET["mode"];
 $ip = $_SERVER["REMOTE_ADDR"];
 if (get_ip_lookup($ip) == 1)
@@ -107,7 +109,38 @@ else
 	}
 
 }
-if ($id == "")
+if ($lanzou != ""&&$id == "")
+{
+	//获取随机站点
+	if(remove==false)
+	{
+		$num = rand(0,count($address)-1);
+		$link = "$address[$num]/lanzou/$lanzou";
+		header("Location: $link");
+//		num(1);
+		exit;	
+	}
+	else
+	{
+		while (true)
+		{	//判断cf站点是否可用，不可用继续随机挑选到可用为止
+			if (getcode($address[$num])== 200)
+			{
+				$link = "$address[$num]/lanzou/$lanzou";
+				//echo $num+1;
+				header("Location: $link");
+				exit;	
+			}
+			else
+			{
+				$num = rand(0,count($address)-1);
+			}
+		}	
+	}
+
+	
+}
+if ($id == "" && $lanzou == "")
 {	
 	//$num = num(0);
 	if (get_ip_lookup($ip) == 1)
@@ -118,7 +151,14 @@ if ($id == "")
 	{
 		$area = "海外";
 	}
-	echo "请在url上加上参数!<br>格式如下:<br>https://gdlink.432100.xyz/?id=文件id<br>获取直链前应将文件设置全网分享(教育版和团队盘可以在PC网页设置)<br>自动识别ip地址<br>大陆ip访问强制使用cf中转<br>非大陆ip访问默认使用谷歌官方直链<br>非大陆ip访问如果需要使用cf中转需要按如下格式访问:<br>https://gdlink.432100.xyz/?id=文件id&mode=cf<br>或<br>https://gdlink.432100.xyz/?id=文件id&mode=0<br>您当前ip判断地区为:$area";
+	echo "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+         请在url上加上参数!<br>格式如下:<br>https://gdlink.432100.xyz/?id=文件id
+	<br>获取直链前应将文件设置全网分享(教育版和团队盘可以在PC网页设置共享,仅支持单文件,不支持目录)
+	<br>自动识别ip地址<br>大陆ip访问强制使用cf中转<br>非大陆ip访问默认使用谷歌官方直链
+	<br>非大陆ip访问如果需要使用cf中转需要按如下格式访问:<br>https://gdlink.432100.xyz/?id=文件id&mode=cf<br>或<br>https://gdlink.432100.xyz/?id=文件id&mode=0
+	<br>新增蓝奏云直链解析,使用方法如下:
+	<br>https://gdlink.432100.xyz/?lanzou=蓝奏云分享id
+	<br>系统判断你当前的ip地区为:$area";
 }
 elseif($mode=="cf")
 {	
