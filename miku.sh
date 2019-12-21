@@ -202,7 +202,7 @@ elif	[ "$m1" == 5 ]
 then
 	#wget -N --no-check-certificate "https://raw.githubusercontent.com/mikulo/miku/master/miku.sh" && chmod +x miku.sh
 	echo -e "\033[32m请手动执行:\033[0m"
-        echo -e "\033[31mwget -N --no-check-certificate "https://raw.githubusercontent.com/mikulo/miku/master/miku.sh" && chmod +x miku.sh&& ./miku.sh\033[0m"
+        echo -e "\033[31mwget -N --no-check-certificate "https://raw.githubusercontent.com/mikulo/miku/master/miku.sh" && chmod +x miku.sh\033[0m"
 	echo -e "\033[32m来更新脚本\033[0m"
 elif	[ "$m1" == 0 ]
 then
