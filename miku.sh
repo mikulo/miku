@@ -39,6 +39,7 @@ echo 4.计算圆周率
 echo 5.更新脚本
 echo 6.卸载脚本
 echo 0.退出脚本
+read -p ">>" m1
 #选项1
 option1(){
 	echo 1.SSR多用户管理系统安装脚本
@@ -81,7 +82,6 @@ option1(){
 	else	
 		echo -e "\033[32m输入错误\033[0m"
 }
-read -p ">>" m1
 if	[ "$m1" == 1 ]
 then
 	option1	
