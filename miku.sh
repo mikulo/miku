@@ -178,19 +178,19 @@ then
 	    if type wget >/dev/null 2>&1; then 
             echo 'wget已安装' 
         else 
-			apt-get install iputils-ping
+			apt-get -y install iputils-ping
             echo 'wget安装完成'
         fi
 	    if type curl >/dev/null 2>&1; then 
             echo 'curl已安装' 
         else 
-			apt-get install iputils-ping
+			apt-get -y install iputils-ping
             echo 'curl安装完成'
         fi
 	    if type ping >/dev/null 2>&1; then 
             echo 'ping已安装' 
         else 
-			apt-get install iputils-ping
+			apt-get -y install iputils-ping
             echo 'ping安装完成'
         fi
 	elif	[ "$m2" == 0 ]
