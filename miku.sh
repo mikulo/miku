@@ -178,13 +178,13 @@ then
 	    if type wget >/dev/null 2>&1; then 
             echo 'wget已安装' 
         else 
-			apt-get -y install iputils-ping
+			apt-get -y install wget
             echo 'wget安装完成'
         fi
 	    if type curl >/dev/null 2>&1; then 
             echo 'curl已安装' 
         else 
-			apt-get -y install iputils-ping
+			apt-get -y install curl
             echo 'curl安装完成'
         fi
 	    if type ping >/dev/null 2>&1; then 
