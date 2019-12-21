@@ -163,6 +163,12 @@ option3()
 		apt-get -y install vim
                 echo 'vim安装完成'
             fi	
+	    if type screen >/dev/null 2>&1; then 
+                echo 'screen已安装' 
+            else 
+		apt-get -y install screen
+                echo 'screen安装完成'
+            fi		 
 	    echo -e "\033[32m全部安装完成!\033[0m"
 	elif	[ "$m2" == 0 ]
 	then
