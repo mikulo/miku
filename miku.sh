@@ -40,10 +40,7 @@ echo 5.更新脚本
 echo 6.卸载脚本
 echo 0.退出脚本
 #选项1
-option1()
-{
-if	[ "$m1" == 1 ]
-then
+option1(){
 	echo 1.SSR多用户管理系统安装脚本
 	echo 2.V2RAY安装脚本
 	echo 3.brook安装脚本
@@ -83,13 +80,11 @@ then
 		wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubiBackup/doubi/master/ocserv.sh && chmod +x ocserv.sh && bash ocserv.sh
 	else	
 		echo -e "\033[32m输入错误\033[0m"
-		
-	fi
 }
 read -p ">>" m1
-	option1
-	
-	
+if	[ "$m1" == 1 ]
+then
+	option1	
 elif	[ "$m1" == 2 ]
 then
 	echo 1.aria2安装脚本
