@@ -27,7 +27,7 @@ option1(){
 	echo 6.daze安装脚本
 	echo 7.mtproxy安装脚本
 	echo 8.AnyConnect安装脚本
-	echo 0.返回上级菜单
+	echo 0.退出脚本
 	read -p ">>" m2
 	if [ "$m2" == 1 ]
 	then
@@ -40,7 +40,7 @@ option1(){
 		wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/brook.sh && chmod +x brook.sh && bash brook.sh
 	elif	[ "$m2" == 0 ]
 	then
-		break
+		echo -e "\033[32m退出完成,执行./miku.sh再次打开本脚本\033[0m"
 	elif	[ "$m2" == 4 ]
 	then
 		wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/goflyway.sh && chmod +x goflyway.sh && bash goflyway.sh
@@ -60,18 +60,16 @@ option1(){
 		echo -e "\033[32m输入错误\033[0m"
 	fi
 }
-if	[ "$m1" == 1 ]
-then
-	option1	
-elif	[ "$m1" == 2 ]
-then
+#选项2
+option2()
+{
 	echo 1.aria2安装脚本
 	echo 2.rclone安装脚本
 	echo 3.linux性能测试脚本\(来源www.94ish.me\)
 	echo 4.禁止指定国家ip访问vps\(来源www.moerats.com\)
 	echo 5.vps回程路由测试
 	echo 6.网速测试
-	echo 0.返回上级菜单
+	echo 0.退出脚本
 	read -p ">>" m2
 	if [ "$m2" == 1 ]
 	then
@@ -93,16 +91,17 @@ then
 		wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/ZBench/master/ZBench-CN.sh && bash ZBench-CN.sh
 	elif	[ "$m2" == 0 ]
 	then
-		break
+		echo -e "\033[32m退出完成,执行./miku.sh再次打开本脚本\033[0m"
 		
 	else	
 		echo -e "\033[32m输入错误\033[0m"
 		
 	fi
 	
-	
-elif	[ "$m1" == 3 ]
-then
+}
+#选项3
+option3()
+{
 	echo 1.安装BBR
 	echo 2.添加\/删除swap虚拟内存\(来源:www.moerats.com\)
 	echo 3.一键安装linux基础指令
@@ -112,7 +111,7 @@ then
 	then
 		echo 1.debian9或ubuntu18快速开启BBR
 		echo 2.更换内核开启BBR
-		echo 0.返回上级
+		echo 0.退出脚本
 		read -p ">>" m2
 		if [ "$m2" == 1 ]
 			then
@@ -127,7 +126,7 @@ then
 				wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubiBackup/doubi/master/bbr.sh && chmod +x bbr.sh && bash bbr.sh
 		elif	[ "$m2" == 0 ]
 			then	
-				break
+				echo -e "\033[32m退出完成,执行./miku.sh再次打开本脚本\033[0m"
 		else	
 				echo -e "\033[32m输入错误\033[0m"
 		
@@ -172,26 +171,51 @@ then
 		echo -e "\033[32m输入错误\033[0m"
 
 	fi	
-elif	[ "$m1" == 4 ]
-then
+}
+#选项4
+option4()
+{
 	read -p "请输入要计算圆周率的小数点后的位数:" pi
 	time echo "scale=$pi; a(1)*4" | bc -l
-elif	[ "$m1" == 5 ]
-then
+}
+#选项5
+option5()
+{
 	wget -N --no-check-certificate "https://raw.githubusercontent.com/mikulo/miku/master/miku.sh" && chmod +x miku.sh
 	echo -e "\033[32m更新完成\033[0m"
 	#echo -e "\033[32m请手动执行:\033[0m"
         #echo -e "\033[31mwget -N --no-check-certificate "https://raw.githubusercontent.com/mikulo/miku/master/miku.sh" && chmod +x miku.sh\033[0m"
 	#echo -e "\033[32m来更新脚本\033[0m"
-elif	[ "$m1" == 0 ]
-then
-	
-	echo -e "\033[32m退出完成,执行./miku.sh再次打开本脚本\033[0m"	
-elif	[ "$m1" == 6 ]
-then
+}
+#选项6
+option6()
+{
 	rm -rf /root/miku.sh
 	rm -rf /usr/local/sbin/miku
 	echo -e "\033[32m卸载完成\033[0m"	
+}
+if	[ "$m1" == 1 ]
+then
+	option1	
+elif	[ "$m1" == 2 ]
+then
+	option2
+	
+elif	[ "$m1" == 3 ]
+then
+	option3
+elif	[ "$m1" == 4 ]
+then
+	option4
+elif	[ "$m1" == 5 ]
+then
+	option5
+elif	[ "$m1" == 0 ]
+then
+	echo -e "\033[32m退出完成,执行./miku.sh再次打开本脚本\033[0m"	
+elif	[ "$m1" == 6 ]
+then
+	option6
 else
 	echo -e "\033[32m输入错误\033[0m"
 
