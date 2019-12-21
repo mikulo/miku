@@ -31,7 +31,7 @@ fi
 #fi
 echo -e "\033[32m欢迎使用多功能脚本,请输入序号选择功能\033[0m"
 echo -e "\033[32m脚本仅支持debian/ubuntu系统!\033[0m" 
-echo -e "\033[32m当前版本为:0.60\033[0m" 
+echo -e "\033[32m当前版本为:0.61\033[0m" 
 echo 1.科学上网脚本集合
 echo 2.各种工具脚本集合
 echo 3.系统优化脚本集合
@@ -200,10 +200,11 @@ then
 	time echo "scale=$pi; a(1)*4" | bc -l
 elif	[ "$m1" == 5 ]
 then
-	#wget -N --no-check-certificate "https://raw.githubusercontent.com/mikulo/miku/master/miku.sh" && chmod +x miku.sh
-	echo -e "\033[32m请手动执行:\033[0m"
-        echo -e "\033[31mwget -N --no-check-certificate "https://raw.githubusercontent.com/mikulo/miku/master/miku.sh" && chmod +x miku.sh\033[0m"
-	echo -e "\033[32m来更新脚本\033[0m"
+	wget -N --no-check-certificate "https://raw.githubusercontent.com/mikulo/miku/master/miku.sh" && chmod +x miku.sh
+	echo -e "\033[32m更新完成\033[0m"
+	#echo -e "\033[32m请手动执行:\033[0m"
+        #echo -e "\033[31mwget -N --no-check-certificate "https://raw.githubusercontent.com/mikulo/miku/master/miku.sh" && chmod +x miku.sh\033[0m"
+	#echo -e "\033[32m来更新脚本\033[0m"
 elif	[ "$m1" == 0 ]
 then
 	
