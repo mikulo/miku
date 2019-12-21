@@ -105,7 +105,7 @@ option3()
 	echo 1.安装BBR
 	echo 2.添加\/删除swap虚拟内存\(来源:www.moerats.com\)
 	echo 3.一键安装linux基础指令
-	echo 0.返回上级菜单
+	echo 0.退出脚本
 	read -p ">>" m2
 	if [ "$m2" == 1 ]
 	then
@@ -165,7 +165,7 @@ option3()
             fi	
 	elif	[ "$m2" == 0 ]
 	then
-		break
+		echo -e "\033[32m退出完成,执行./miku.sh再次打开本脚本\033[0m"
 		
 	else	
 		echo -e "\033[32m输入错误\033[0m"
