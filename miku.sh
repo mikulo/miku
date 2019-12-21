@@ -31,7 +31,7 @@ fi
 #fi
 echo -e "\033[32m欢迎使用多功能脚本,请输入序号选择功能\033[0m"
 echo -e "\033[32m脚本仅支持debian/ubuntu系统!\033[0m" 
-echo -e "\033[32m当前版本为:0.61\033[0m" 
+echo -e "\033[32m当前版本为:0.62\033[0m" 
 echo 1.科学上网脚本集合
 echo 2.各种工具脚本集合
 echo 3.系统优化脚本集合
@@ -39,7 +39,9 @@ echo 4.计算圆周率
 echo 5.更新脚本
 echo 6.卸载脚本
 echo 0.退出脚本
-read -p ">>" m1
+#选项1
+option1()
+{
 if	[ "$m1" == 1 ]
 then
 	echo 1.SSR多用户管理系统安装脚本
@@ -83,6 +85,9 @@ then
 		echo -e "\033[32m输入错误\033[0m"
 		
 	fi
+}
+read -p ">>" m1
+	option1
 	
 	
 elif	[ "$m1" == 2 ]
