@@ -174,7 +174,7 @@ then
 	elif	[ "$m2" == 3 ]	
 	then
 		apt-get update
-		//apt-get upgrade
+		#apt-get upgrade
 	    if type wget >/dev/null 2>&1; then 
             echo 'wget已安装' 
         else 
