@@ -29,8 +29,6 @@ fi
 #	
 #    fi
 #fi
-while true
-do
 echo -e "\033[32m欢迎使用多功能脚本,请输入序号选择功能\033[0m"
 echo -e "\033[32m脚本仅支持debian/ubuntu系统!\033[0m" 
 echo -e "\033[32m当前版本为:0.56\033[0m" 
@@ -44,8 +42,6 @@ echo 0.退出脚本
 read -p ">>" m1
 if	[ "$m1" == 1 ]
 then
-	while true
-	do
 	echo 1.SSR多用户管理系统安装脚本
 	echo 2.V2RAY安装脚本
 	echo 3.brook安装脚本
@@ -87,13 +83,10 @@ then
 		echo -e "\033[32m输入错误\033[0m"
 		
 	fi
-	done	
 	
 	
 elif	[ "$m1" == 2 ]
 then
-	while true
-	do
 	echo 1.aria2安装脚本
 	echo 2.rclone安装脚本
 	echo 3.linux性能测试脚本\(来源www.94ish.me\)
@@ -128,13 +121,10 @@ then
 		echo -e "\033[32m输入错误\033[0m"
 		
 	fi
-	done	
 	
 	
 elif	[ "$m1" == 3 ]
 then
-	while true
-	do
 	echo 1.安装BBR
 	echo 2.添加\/删除swap虚拟内存\(来源:www.moerats.com\)
 	echo 3.一键安装linux基础指令
@@ -142,8 +132,6 @@ then
 	read -p ">>" m2
 	if [ "$m2" == 1 ]
 	then
-		while true
-		do
 		echo 1.debian9或ubuntu18快速开启BBR
 		echo 2.更换内核开启BBR
 		echo 0.返回上级
@@ -166,7 +154,6 @@ then
 				echo -e "\033[32m输入错误\033[0m"
 		
 		fi
-		done
 	elif	[ "$m2" == 2 ]	
 	then		
 		wget -N https://raw.githubusercontent.com/rmrfalll/miku/master/swap.sh && bash swap.sh
@@ -206,8 +193,7 @@ then
 	else	
 		echo -e "\033[32m输入错误\033[0m"
 
-	fi
-	done	
+	fi	
 elif	[ "$m1" == 4 ]
 then
 	read -p "请输入要计算圆周率的小数点后的位数:" pi
@@ -247,4 +233,4 @@ else
 	echo -e "\033[32m输入错误\033[0m"
 
 fi
-done
+
