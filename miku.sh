@@ -176,23 +176,29 @@ then
 		apt-get update
 		#apt-get upgrade
 	    if type wget >/dev/null 2>&1; then 
-            echo 'wget已安装' 
-        else 
-			apt-get -y install wget
-            echo 'wget安装完成'
-        fi
+            	echo 'wget已安装' 
+            else 
+		apt-get -y install wget
+            	echo 'wget安装完成'
+            fi
 	    if type curl >/dev/null 2>&1; then 
-            echo 'curl已安装' 
-        else 
-			apt-get -y install curl
-            echo 'curl安装完成'
-        fi
+            	echo 'curl已安装' 
+            else 
+		apt-get -y install curl
+                echo 'curl安装完成'
+            fi
 	    if type ping >/dev/null 2>&1; then 
-            echo 'ping已安装' 
-        else 
-			apt-get -y install iputils-ping
-            echo 'ping安装完成'
-        fi
+                echo 'ping已安装' 
+            else 
+		apt-get -y install iputils-ping
+                echo 'ping安装完成'
+            fi
+	    if type vim >/dev/null 2>&1; then 
+                echo 'vim已安装' 
+            else 
+		apt-get -y install vim
+                echo 'vim安装完成'
+            fi	
 	elif	[ "$m2" == 0 ]
 	then
 		break
