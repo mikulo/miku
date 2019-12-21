@@ -200,14 +200,14 @@ then
 	time echo "scale=$pi; a(1)*4" | bc -l
 elif	[ "$m1" == 5 ]
 then
-	wget -N --no-check-certificate "https://raw.githubusercontent.com/mikulo/miku/master/miku.sh" && chmod +x miku.sh
-	echo -e "\033[32m更新完成!\033[0m"
+	#wget -N --no-check-certificate "https://raw.githubusercontent.com/mikulo/miku/master/miku.sh" && chmod +x miku.sh
+	echo -e "\033[32m请执行wget -N --no-check-certificate "https://raw.githubusercontent.com/mikulo/miku/master/miku.sh" && chmod +x miku.sh&& ./miku.sh\n来手动更新脚本\033[0m"
 
 	
 elif	[ "$m1" == 0 ]
 then
 	
-	echo -e "\033[32m退出完成,执行./miku再次打开本脚本\033[0m"	
+	echo -e "\033[32m退出完成,执行./miku.sh再次打开本脚本\033[0m"	
 elif	[ "$m1" == 6 ]
 then
 	rm -rf /root/miku.sh
