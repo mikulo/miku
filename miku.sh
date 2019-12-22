@@ -8,7 +8,7 @@ else
 fi
 echo -e "\033[32m欢迎使用多功能脚本,请输入序号选择功能\033[0m"
 echo -e "\033[32m脚本仅支持debian/ubuntu系统!\033[0m" 
-echo -e "\033[32m当前版本为:0.62\033[0m" 
+echo -e "\033[32m当前版本为:0.63\033[0m" 
 echo 1.科学上网脚本集合
 echo 2.各种工具脚本集合
 echo 3.系统优化脚本集合
@@ -136,40 +136,54 @@ option3()
 		wget -N https://raw.githubusercontent.com/rmrfalll/miku/master/swap.sh && bash swap.sh
 	
 	elif	[ "$m2" == 3 ]	
-	then
+	then	
+		insall = ()
 		apt-get update
 		#apt-get upgrade
 	    if type wget >/dev/null 2>&1; then 
             	echo 'wget已安装' 
             else 
 		apt-get -y install wget
+		insall[${#insall[@]}]="wget"
             	echo 'wget安装完成'
             fi
 	    if type curl >/dev/null 2>&1; then 
             	echo 'curl已安装' 
             else 
 		apt-get -y install curl
+		insall[${#insall[@]}]="curl"
                 echo 'curl安装完成'
             fi
 	    if type ping >/dev/null 2>&1; then 
                 echo 'ping已安装' 
             else 
 		apt-get -y install iputils-ping
+		insall[${#insall[@]}]="ping"
                 echo 'ping安装完成'
             fi
 	    if type vim >/dev/null 2>&1; then 
                 echo 'vim已安装' 
             else 
 		apt-get -y install vim
+		insall[${#insall[@]}]="vim"
                 echo 'vim安装完成'
             fi	
 	    if type screen >/dev/null 2>&1; then 
                 echo 'screen已安装' 
             else 
 		apt-get -y install screen
+		insall[${#insall[@]}]="screen"
                 echo 'screen安装完成'
-            fi		 
+            fi		
+	    if type unzip >/dev/null 2>&1; then 
+                echo 'unzip已安装' 
+            else 
+		apt-get -y install unzip
+		insall[${#insall[@]}]="unzip"
+                echo 'unzip安装完成'
+            fi		    
 	    echo -e "\033[32m全部安装完成!\033[0m"
+	    echo "安装了下列软件: ${insall[*]}"
 	elif	[ "$m2" == 0 ]
 	then
 		echo -e "\033[32m退出完成,执行./miku.sh再次打开本脚本\033[0m"
