@@ -186,7 +186,7 @@ option3()
 	    	echo "没有需要安装的软件!"
 	    else
 	    	echo -e "\033[32m全部安装完成!\033[0m"
-	    	echo "安装了下列软件: ${insall[*]}"
+	    	echo -e "\033[32m安装了下列软件: ${insall[*]}\033[0m"
 	    fi
 	elif	[ "$m2" == 0 ]
 	then
