@@ -137,7 +137,7 @@ option3()
 	
 	elif	[ "$m2" == 3 ]	
 	then	
-		insall = ()
+		unset insall
 		apt-get update
 		#apt-get upgrade
 	    if type wget >/dev/null 2>&1; then 
