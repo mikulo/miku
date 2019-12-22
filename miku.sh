@@ -27,7 +27,7 @@ option1(){
 	echo 6.daze安装脚本
 	echo 7.mtproxy安装脚本
 	echo 8.AnyConnect安装脚本
-z
+	read -p ">>" m2
 	if [ "$m2" == 1 ]
 	then
 		wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssrmu.sh && chmod +x ssrmu.sh && bash ssrmu.sh
