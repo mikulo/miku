@@ -27,8 +27,7 @@ option1(){
 	echo 6.daze安装脚本
 	echo 7.mtproxy安装脚本
 	echo 8.AnyConnect安装脚本
-	echo 0.退出脚本
-	read -p ">>" m2
+z
 	if [ "$m2" == 1 ]
 	then
 		wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssrmu.sh && chmod +x ssrmu.sh && bash ssrmu.sh
@@ -181,9 +180,13 @@ option3()
 		apt-get -y install unzip
 		insall[${#insall[@]}]="unzip"
                 echo 'unzip安装完成'
-            fi		    
-	    echo -e "\033[32m全部安装完成!\033[0m"
-	    echo "安装了下列软件: ${insall[*]}"
+            fi	
+	    if [ ${#insall[*]} == 0 ] 
+	    then
+	    	echo "没有需要安装的软件!"
+	    else
+	    	echo -e "\033[32m全部安装完成!\033[0m"
+	    	echo "安装了下列软件: ${insall[*]}"
 	elif	[ "$m2" == 0 ]
 	then
 		echo -e "\033[32m退出完成,执行./miku.sh再次打开本脚本\033[0m"
