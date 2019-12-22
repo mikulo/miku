@@ -187,6 +187,7 @@ option3()
 	    else
 	    	echo -e "\033[32m全部安装完成!\033[0m"
 	    	echo "安装了下列软件: ${insall[*]}"
+	    fi
 	elif	[ "$m2" == 0 ]
 	then
 		echo -e "\033[32m退出完成,执行./miku.sh再次打开本脚本\033[0m"
