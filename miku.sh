@@ -181,6 +181,20 @@ option3()
 		insall[${#insall[@]}]="unzip"
                 echo 'unzip安装完成'
             fi	
+	    if type pip >/dev/null 2>&1; then 
+                echo 'python-pip已安装' 
+            else 
+		apt-get -y install python-pip
+		insall[${#insall[@]}]="python-pip"
+                echo 'python-pip安装完成'
+            fi	
+	    if type pip3 >/dev/null 2>&1; then 
+                echo 'python3-pip已安装' 
+            else 
+		apt-get -y install python3-pip
+		insall[${#insall[@]}]="python3-pip"
+                echo 'python3-pip安装完成'
+            fi		    
 	    if [ ${#insall[*]} == 0 ] 
 	    then
 	    	echo "没有需要安装的软件!"
