@@ -6,6 +6,14 @@ else
 	echo -e "\033[32m请用root用户执行本脚本!\033[0m"
         exit
 fi
+if type miku >/dev/null 2>&1; then 
+    rm miku
+    path=`pwd`
+    ln -s "$path/miku.sh" /usr/bin/miku
+else 
+    path=`pwd`
+    ln -s "$path/miku.sh" /usr/bin/miku
+fi	
 path=`pwd`
 ln -s "$path\/.miku.sh" /usr/bin
 echo -e "\033[32m欢迎使用多功能脚本,请输入序号选择功能\033[0m"
