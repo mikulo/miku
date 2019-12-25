@@ -7,7 +7,7 @@ else
         exit
 fi
 if type miku >/dev/null 2>&1; then 
-    rm /usr/binmiku
+    rm /usr/bin/miku
     path=`pwd`
     ln -s "$path/miku.sh" /usr/bin/miku
 else 
