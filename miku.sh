@@ -40,9 +40,9 @@ for ku in ${all[@]}
 do
 if [[ $doneins =~ $ku ]]
 then
-    echo "包含"
+    echo "$ku已安装"
 else
-    echo "不包含"
+    echo $ku未安装"
 fi    
 done
 }
