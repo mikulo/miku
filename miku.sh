@@ -6,6 +6,8 @@ else
 	echo -e "\033[32m请用root用户执行本脚本!\033[0m"
         exit
 fi
+path=`pwd`
+ln -s "$path\/.miku.sh" /usr/bin
 echo -e "\033[32m欢迎使用多功能脚本,请输入序号选择功能\033[0m"
 echo -e "\033[32m脚本仅支持debian/ubuntu系统!\033[0m" 
 echo -e "\033[32m当前版本为:0.63\033[0m" 
