@@ -25,6 +25,27 @@ echo 5.更新脚本
 echo 6.卸载脚本
 echo 0.退出脚本
 read -p ">>" m1
+#pip安装Python库
+pipinstall()
+{
+all=("requests" "pinyin" "telegram" "flask")
+if type pip3 >/dev/null 2>&1; then 
+	echo 'python3-pip已安装' 
+else 
+	apt-get -y install python3-pip
+	echo 'python3-pip安装完成'
+fi	
+doneins=`pip3 list`
+for ku in ${all[@]}
+do
+if [[ $doneins =~ $ku ]]
+then
+    echo "包含"
+else
+    echo "不包含"
+fi    
+done
+}
 #选项1
 option1(){
 	echo 1.SSR多用户管理系统安装脚本
@@ -112,6 +133,7 @@ option3()
 	echo 1.安装BBR
 	echo 2.添加\/删除swap虚拟内存\(来源:www.moerats.com\)
 	echo 3.一键安装linux基础指令
+	echo 4.一键安装python3库
 	echo 0.退出脚本
 	read -p ">>" m2
 	if [ "$m2" == 1 ]
@@ -210,6 +232,9 @@ option3()
 	    	echo -e "\033[32m全部安装完成!\033[0m"
 	    	echo -e "\033[32m安装了下列软件: ${insall[*]}\033[0m"
 	    fi
+	elif	[ "$m2" == 4 ]	
+	then	
+		pipinstall
 	elif	[ "$m2" == 0 ]
 	then
 		echo -e "\033[32m退出完成,执行./miku.sh再次打开本脚本\033[0m"
