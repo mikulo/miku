@@ -43,7 +43,7 @@ then
     echo "$ku已安装"
 else
     pip3 install $ku
-    echo -e "\033[32m$ku安装完成\033[0m
+    echo -e "\033[32m$ku安装完成\033[0m"
 fi    
 done
 echo -e "\033[32m全部安装完成\033[0m"
