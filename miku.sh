@@ -42,7 +42,7 @@ if [[ $doneins =~ $ku ]]
 then
     echo "$ku已安装"
 else
-    echo $ku未安装"
+    echo "$ku未安装"
 fi    
 done
 }
