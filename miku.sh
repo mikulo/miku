@@ -286,7 +286,7 @@ then
 	option5
 elif	[ "$m1" == 0 ]
 then
-	echo -e "\033[32m退出完成,执行./miku.sh再次打开本脚本\033[0m"	
+	echo -e "\033[32m退出完成,执行miku再次打开本脚本\033[0m"	
 elif	[ "$m1" == 6 ]
 then
 	option6
