@@ -118,7 +118,7 @@ option2()
 		wget -N https://raw.githubusercontent.com/rmrfalll/miku/master/testrace.sh&&chmod +x testrace.sh&&bash testrace.sh
 	elif	[ "$m2" == 6 ]
 	then
-		wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/ZBench/master/ZBench-CN.sh && bash ZBench-CN.sh
+		wget -N http://yun.789888.xyz/speedtest.sh&&chmod +x speedtest.sh&&bash speedtest.sh
 	elif	[ "$m2" == 0 ]
 	then
 		echo -e "\033[32m退出完成,执行./miku.sh再次打开本脚本\033[0m"
