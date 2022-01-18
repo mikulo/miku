@@ -12,8 +12,10 @@ echo "请输入端口:"
 read -p ">>" port
 echo "请输入域名(确保已解析到本机IP):"
 read -p ">>" domain
-echo "请输入申请ssl的邮箱:"
-read -p ">>" email
+echo "请输入ssl公钥路径:"
+read -p ">>" pem
+echo "请输入ssl私钥路径:"
+read -p ">>" key
 echo "请输入obfs:"
 read -p ">>" obfs
 echo "请输入上传限速,单位为m:"
@@ -23,12 +25,8 @@ read -p ">>" down_mbps
 cat>config.json<<EOF
 {
   "listen": ":${port}",
-  "acme": {
-    "domains": [
-      "${domain}"
-    ],
-    "email": "${email}"
-  },
+  "cert": "${pem}",
+  "key": "${key}",
   "obfs": "${obfs}",
   "up_mbps": ${up_mbps},
   "down_mbps": ${down_mbps}
