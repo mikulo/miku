@@ -64,69 +64,69 @@ websites = {
     },
     "观众": {
         "url": "https://audiences.me/index.php",
-        "referer": "https://audiences.me/userdetails.php?id=17005",
+        "referer": "https://audiences.me/userdetails.php?id=",
         "cookie": "",
         "user-agent": "user-agent3",
         "success_string": "欢迎回来"
     },
     "岛": {
-        "url": "https://chdbits.co/userdetails.php?id=126293",
-        "referer": "https://chdbits.co/userdetails.php?id=126293",
+        "url": "https://chdbits.co/userdetails.php?id=",
+        "referer": "https://chdbits.co/userdetails.php?id=",
         "cookie": "",
         "user-agent": "user-agent3",
         "success_string": "欢迎回来"
     },
     "瓷": {
-        "url": "https://hdchina.org/userdetails.php?id=326804",
+        "url": "https://hdchina.org/userdetails.php?id=",
         "referer": "https://hdchina.org/",
         "cookie": "",
         "user-agent": "",
         "success_string": "欢迎回来"
     },
     "堡": {
-        "url": "https://ourbits.club/userdetails.php?id=53310",
+        "url": "https://ourbits.club/userdetails.php?id=",
         "referer": "https://ourbits.club/",
         "cookie": "",
         "user-agent": "",
         "success_string": "欢迎回来"
     },
     "梓喵": {
-        "url": "https://azusa.wiki/userdetails.php?id=514",
+        "url": "https://azusa.wiki/userdetails.php?id=",
         "referer": "https://azusa.wiki/",
         "cookie": "",
         "user-agent": "",
         "success_string": "欢迎回来"
     },
     "家园": {
-        "url": "https://hdhome.org/userdetails.php?id=125320",
+        "url": "https://hdhome.org/userdetails.php?id=",
         "referer": "https://hdhome.org/",
         "cookie": "",
         "user-agent": "",
         "success_string": "欢迎回来"
     },
     "TTG": {
-        "url": "https://totheglory.im/userdetails.php?id=164857",
+        "url": "https://totheglory.im/userdetails.php?id=",
         "referer": "https://totheglory.im/",
         "cookie": "",
         "user-agent": "",
         "success_string": "2023-09-20 15:54:06"
     },
     "备胎": {
-        "url": "https://www.beitai.pt/userdetails.php?id=25377",
+        "url": "https://www.beitai.pt/userdetails.php?id=",
         "referer": "https://www.beitai.pt/",
         "cookie": "",
         "user-agent": "",
         "success_string": "欢迎回来"
     },
     "皇后": {
-        "url": "https://open.cd/userdetails.php?id=77942",
+        "url": "https://open.cd/userdetails.php?id=",
         "referer": "https://open.cd/",
         "cookie": "",
         "user-agent": "",
         "success_string": "歡迎回來"
     },
     "猫": {
-        "url": "https://pterclub.com/userdetails.php?id=10427",
+        "url": "https://pterclub.com/userdetails.php?id=",
         "referer": "https://pterclub.com/",
         "cookie": "",
         "user-agent": "",
