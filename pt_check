@@ -1,0 +1,184 @@
+import requests
+import random
+import time
+import urllib.parse
+import logging
+import datetime
+import sys
+from PyCookieCloud import PyCookieCloud
+import urllib.parse
+# 随机延时0-300秒
+success_websites = []  # 用于存放成功访问的网站名的数组
+failure_websites = []  # 用于存放访问失败的网站名的数组
+delay = random.randint(int(sys.argv[1]),int(sys.argv[2]))
+time.sleep(delay)
+get_cookie_istrue = 1
+cookie_cloud = PyCookieCloud('', '', '')
+the_key = cookie_cloud.get_the_key()
+if not the_key:
+    get_cookie_istrue = 0
+    print('Failed to get the key')
+encrypted_data = cookie_cloud.get_encrypted_data()
+if not encrypted_data:
+    get_cookie_istrue = 0
+    print('Failed to get encrypted data')
+if get_cookie_istrue == 0:
+    requests.get("")
+    
+decrypted_data = cookie_cloud.get_decrypted_data()
+if not decrypted_data:
+    print('Failed to get decrypted data')
+def get_cookie(url,decrypted_data):
+    parsed_url = urllib.parse.urlparse(url)
+    url = parsed_url.netloc
+    cookie_list = decrypted_data[url]
+    cookie_string = ""
+    for cookie in cookie_list:
+        name = cookie['name']
+        value = cookie['value']
+        cookie_string += name + "=" + value + ";"
+# 移除最后一个分号
+    cookie_string = cookie_string[:-1]
+    return cookie_string
+websites = {
+    "憨憨": {
+        "url": "https://hhanclub.top/attendance.php",
+        "referer": "https://hhanclub.top/index.php",
+        "cookie": "",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203",
+        "success_string": "本次签到获得"
+    },
+    "朋友": {
+        "url": "https://pt.keepfrds.com/index.php",
+        "referer": "https://pt.keepfrds.com/torrents.php",
+        "cookie": "",
+        "user-agent": "user-agent2",
+        "success_string": "欢迎回来"
+    },
+    "春天": {
+        "url": "https://springsunday.net/index.php",
+        "referer": "https://springsunday.net/torrents.php",
+        "cookie": "",
+        "user-agent": "user-agent3",
+        "success_string": "欢迎回来"
+    },
+    "观众": {
+        "url": "https://audiences.me/index.php",
+        "referer": "https://audiences.me/userdetails.php?id=17005",
+        "cookie": "",
+        "user-agent": "user-agent3",
+        "success_string": "欢迎回来"
+    },
+    "岛": {
+        "url": "https://chdbits.co/userdetails.php?id=126293",
+        "referer": "https://chdbits.co/userdetails.php?id=126293",
+        "cookie": "",
+        "user-agent": "user-agent3",
+        "success_string": "欢迎回来"
+    },
+    "瓷": {
+        "url": "https://hdchina.org/userdetails.php?id=326804",
+        "referer": "https://hdchina.org/",
+        "cookie": "",
+        "user-agent": "",
+        "success_string": "欢迎回来"
+    },
+    "堡": {
+        "url": "https://ourbits.club/userdetails.php?id=53310",
+        "referer": "https://ourbits.club/",
+        "cookie": "",
+        "user-agent": "",
+        "success_string": "欢迎回来"
+    },
+    "梓喵": {
+        "url": "https://azusa.wiki/userdetails.php?id=514",
+        "referer": "https://azusa.wiki/",
+        "cookie": "",
+        "user-agent": "",
+        "success_string": "欢迎回来"
+    },
+    "家园": {
+        "url": "https://hdhome.org/userdetails.php?id=125320",
+        "referer": "https://hdhome.org/",
+        "cookie": "",
+        "user-agent": "",
+        "success_string": "欢迎回来"
+    },
+    "TTG": {
+        "url": "https://totheglory.im/userdetails.php?id=164857",
+        "referer": "https://totheglory.im/",
+        "cookie": "",
+        "user-agent": "",
+        "success_string": "2023-09-20 15:54:06"
+    },
+    "备胎": {
+        "url": "https://www.beitai.pt/userdetails.php?id=25377",
+        "referer": "https://www.beitai.pt/",
+        "cookie": "",
+        "user-agent": "",
+        "success_string": "欢迎回来"
+    },
+    "皇后": {
+        "url": "https://open.cd/userdetails.php?id=77942",
+        "referer": "https://open.cd/",
+        "cookie": "",
+        "user-agent": "",
+        "success_string": "歡迎回來"
+    },
+    "猫": {
+        "url": "https://pterclub.com/userdetails.php?id=10427",
+        "referer": "https://pterclub.com/",
+        "cookie": "",
+        "user-agent": "",
+        "success_string": "欢迎回来"
+    }
+   
+}
+for website_name, website_info in websites.items():
+    url = website_info.get("url")
+    referer = website_info.get("referer")
+    if get_cookie_istrue == 0:
+        cookie = website_info.get("cookie")
+    else:
+        cookie = get_cookie(url,decrypted_data)
+#    cookie = website_info.get("cookie")
+    user_agent = website_info.get("user-agent")
+    success_string = website_info.get("success_string")
+
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203",
+        "Referer": referer,
+        "Cookie": cookie
+    }
+
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        if success_string in response.text:
+            print(f"{website_name} 模拟访问成功")
+            success_websites.append(website_name)
+        else:
+            print(f"{website_name} 模拟访问失败")
+            failure_websites.append(website_name)
+    else:
+        print(f"访问 {website_name} 失败，状态码：{response.status_code}",response.text)
+        failure_websites.append(website_name)
+success_string = "以下网站模拟访问成功: " + ", ".join(success_websites)
+failure_string = "以下网站模拟访问失败: " + ", ".join(failure_websites)
+
+encoded_success_string = urllib.parse.quote(success_string)
+encoded_failure_string = urllib.parse.quote(failure_string)
+
+url = "" + encoded_success_string
+requests.get(url)
+
+url = "" + encoded_failure_string
+requests.get(url)
+# 创建并配置日志记录器
+logging.basicConfig(filename='pt.log', level=logging.INFO, format='%(asctime)s %(message)s')
+
+# 获取当前日期时间戳
+current_timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+# 将信息写入日志文件
+logging.info(f"{current_timestamp} {success_string} {failure_string}")
